@@ -16,4 +16,5 @@ gcc -o /path/to/your/binary -I$HOME/.local/include -L$HOME/.local/lib64 /path/to
 then run your program:
 LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib64" /path/to/your/binary
 
-To see the HTML documentation for the library, examine $HOME/.local/share/doc/glibdictclient/html/index.html
+To generate documentations for the library, use glibdictclient.doxy file (or your own one) in directory src:
+cd src && doxygen glibdictclient.doxy

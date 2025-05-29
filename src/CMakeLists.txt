@@ -21,10 +21,6 @@ install( TARGETS ${CMAKE_PROJECT_NAME}
 	LIBRARY
 	PUBLIC_HEADER )
 
-install( DIRECTORY
-	doc/html
-	TYPE DOC )
-
 target_include_directories( ${CMAKE_PROJECT_NAME}
 	PRIVATE
 	${GLIB2_INCLUDE_DIRS}
