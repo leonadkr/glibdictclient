@@ -1,0 +1,19 @@
+This shared library implements a client part of DICT protocol referenced by RFC 2229, excluding extensions.
+
+
+The library uses glib, also you need cmake to build it.
+
+To build:
+cmake -S glib-dict-client -B /tmp/glib-dict-client/release -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_TOOLCHAIN_FILE=GlibToolChain.cmake
+
+To install:
+DESTDIR=$HOME/.local cmake --build /tmp/glib-dict-client/release --config Release --target install/strip
+
+To use:
+compile your program with:
+gcc -o /path/to/your/binary -I$HOME/.local/include -L$HOME/.local/lib64 /path/to/your/source.c
+
+then run your program:
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/lib64" /path/to/your/binary
+
+To see the HTML documentation for the library, examine $HOME/.local/share/doc/glibdictclient/html/index.html
