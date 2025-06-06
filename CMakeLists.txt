@@ -5,7 +5,8 @@ project( glibdictclient VERSION 1.0.0 )
 set( LIBRARY_NAME ${CMAKE_PROJECT_NAME} )
 set( LIBRARY_VERSION ${CMAKE_PROJECT_VERSION} )
 
-set( PROGRAM_CONFIGURE_FILE "config" )
+set( PROGRAM_NAME "glib-dict-client" )
+set( PROGRAM_APP_ID "com.github.leonadkr.${PROGRAM_NAME}" )
 
 if( CMAKE_HOST_WIN32 )
 	set( LIBRARY_LINE_BREAKER "\\r\\n" )
