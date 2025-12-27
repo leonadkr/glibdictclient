@@ -1,22 +1,23 @@
 This shared library implements a client part of DICT protocol referenced by RFC 2229, excluding extensions.
 
-The library uses glib, also you need cmake to build it. If you set -DGLIBDICTCLIENT_UTIL=y, the utility program glib-dict-client will also be built. This program should be used only for testing the library.
+The library uses glib, also you need cmake to build it. If you set -DGLIBDICTCLIENT_UTIL=ON, the utility program glib-dict-client will also be built. This program should be used only for testing the library.
 
 To build:
-cmake -S glib-dict-client -B /tmp/glib-dict-client/release -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_TOOLCHAIN_FILE=GlibToolChain.cmake
+cmake -S glibdictclient -B glibdictclient/build -DGLIBDICTCLIENT_UTIL=ON --preset release
+cmake --build glibdictclient/build
 
 To install:
-DESTDIR=$HOME/.local cmake --build /tmp/glib-dict-client/release --config Release --target install/strip
+cmake --install glibdictclient/build --prefix glibdictclient/install
 
 To use:
 compile your program with:
-gcc -o /path/to/your/binary -I$HOME/.local/usr/include -L$HOME/.local/usr/lib64 /path/to/your/source.c
+gcc -o /path/to/your/binary -Iglibdictclient/install/include -Lglibdictclient/install/lib64 /path/to/your/source.c
 
 then run your program:
-LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/usr/lib64" /path/to/your/binary
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH:glibdictclient/install/lib64" /path/to/your/binary
 
 the same for the utility program:
-LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/.local/usr/lib64" $HOME/.local/usr/bin/glib-dict-client
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH:glibdictclient/install/lib64" glibdictclient/install/bin/glib-dict-client
 
 To generate documentation for the library, use glibdictclient.doxy file (or your own one) in directory src:
-cd src && doxygen glibdictclient.doxy
+cd glibdictclient/src && doxygen glibdictclient.doxy

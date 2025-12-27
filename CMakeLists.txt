@@ -1,9 +1,9 @@
-cmake_minimum_required( VERSION 3.16 )
+cmake_minimum_required( VERSION 4.1 )
 
 project( glibdictclient VERSION 1.0.0 )
 
-set( LIBRARY_NAME ${CMAKE_PROJECT_NAME} )
-set( LIBRARY_VERSION ${CMAKE_PROJECT_VERSION} )
+set( LIBRARY_NAME ${PROJECT_NAME} )
+set( LIBRARY_VERSION ${PROJECT_VERSION} )
 
 set( PROGRAM_NAME "glib-dict-client" )
 set( PROGRAM_APP_ID "com.github.leonadkr.${PROGRAM_NAME}" )
@@ -13,6 +13,8 @@ if( CMAKE_HOST_WIN32 )
 else()
 	set( LIBRARY_LINE_BREAKER "\\n" )
 endif()
+
+option( GLIBDICTCLIENT_UTIL "Build the console util." OFF )
 
 configure_file( config.h.in config.h )
 include_directories( ${CMAKE_CURRENT_BINARY_DIR} )
